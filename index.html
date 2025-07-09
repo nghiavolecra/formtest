@@ -431,39 +431,59 @@
   </form>
 
   <script>
-    const form = document.querySelector('form[name="survey"]');
-    const sections = document.querySelectorAll('.question-section');
-    const total = sections.length;
-    let current = 1;
+  const form     = document.querySelector('form[name="survey"]');
+  const sections = document.querySelectorAll('.question-section');
+  const total    = sections.length;
+  let current    = 1;
 
-    function showStep(n) {
-      sections.forEach((sec,i)=>sec.classList.toggle('active', i+1===n));
-      document.getElementById('progressBar').style.width = (n/total*100)+'%';
-      document.getElementById('prevBtn').style.display = n>1?'inline-block':'none';
-      const next = document.getElementById('nextBtn');
-      next.textContent = n===total?'Hoàn tất 🎉':'Tiếp theo ➡️';
+  function showStep(n) {
+    sections.forEach((sec,i)=> sec.classList.toggle('active', i+1===n));
+    document.getElementById('progressBar').style.width = (n/total*100)+'%';
+    document.getElementById('prevBtn').style.display = n>1?'inline-block':'none';
+    document.getElementById('nextBtn').textContent = n===total?'Hoàn tất 🎉':'Tiếp theo ➡️';
+  }
+
+  function nextQ() {
+    if (current < total) {
+      current++;
+      showStep(current);
+    } else {
+      form.submit();
     }
+  }
 
-    function nextQ() {
-      if (current < total) {
-        current++; showStep(current);
-      } else {
-        form.submit();
-      }
+  function prevQ(){
+    if (current>1) {
+      current--;
+      showStep(current);
     }
+  }
 
-    function prevQ(){
-      if(current>1){current--;showStep(current);}
-    }
+  function selectRadio(el) {
+    const name = el.querySelector('input').name;
+    // Bỏ .selected ở các label khác
+    document.getElementsByName(name)
+      .forEach(i=>i.closest('.radio-option').classList.remove('selected'));
+    // Thêm .selected vào label được click
+    el.classList.add('selected');
+    // Check input bên trong
+    el.querySelector('input').checked = true;
+  }
 
-    function selectRadio(el){
-      const name = el.querySelector('input').name;
-      document.getElementsByName(name).forEach(i=>i.closest('.radio-option').classList.remove('selected'));
-      el.classList.add('selected');
-      el.querySelector('input').checked=true;
-    }
+  window.addEventListener('DOMContentLoaded', () => {
+    // Hiện câu hỏi đầu tiên
+    showStep(1);
 
-    window.addEventListener('DOMContentLoaded', ()=> showStep(1));
-  </script>
+    // Gán sự kiện cho nút Next / Prev
+    document.getElementById('nextBtn').addEventListener('click', nextQ);
+    document.getElementById('prevBtn').addEventListener('click', prevQ);
+
+    // Gán sự kiện click cho tất cả các label.radio-option
+    document.querySelectorAll('.radio-option').forEach(label => {
+      label.addEventListener('click', () => selectRadio(label));
+    });
+  });
+</script>
+
 </body>
 </html>
