@@ -505,11 +505,14 @@
         showStep(current);
         showFeedback();
       } else {
-        document.querySelector('.survey-container').style.display='none';
-        document.querySelector('.btn-group').style.display='none';
-        fb.style.display='none';
-        document.getElementById('congrats').classList.add('active');
-        // form.submit();
+       // gửi form lên Netlify
+       form.submit();
+       // ẩn survey-container & nút + feedback
+       document.querySelector('.survey-container').style.display = 'none';
+       document.querySelector('.btn-group').style.display = 'none';
+       fb.style.display = 'none';
+       // hiển thị thanks
+       document.getElementById('congrats').classList.add('active');
       }
     }
 
