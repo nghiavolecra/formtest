@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Khảo Sát Nhu Cầu AI Call Center 🎯</title>
+  <title>Khảo Sát Nhu cầu ứng dụng AI trong Call Center</title>
   <style>
     /* ===== EFFECTIVE FORM CSS ===== */
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -12,100 +12,134 @@
       background:linear-gradient(135deg,#43cea2,#185a9d);
       min-height:100vh; padding:20px; color:#333;
     }
+    .survey-header { text-align:center; margin-bottom:20px; }
+    .survey-title { font-size:2.5em; color:#fff; text-shadow:1px 1px 4px rgba(0,0,0,0.3); }
+    .survey-subtitle { font-size:1.2em; color:#f0f0f0; margin-top:10px; }
     .survey-container {
-      max-width:800px;margin:0 auto;
+      max-width:800px; margin:0 auto;
       background:rgba(255,255,255,0.95);
-      border-radius:16px;padding:30px;
+      border-radius:16px; padding:30px;
       box-shadow:0 20px 40px rgba(0,0,0,0.1);
       backdrop-filter:blur(8px);
     }
-    .progress-container {
-      background:#eee;border-radius:10px;
-      height:8px;overflow:hidden;margin-bottom:20px;
-    }
+    .progress-container { background:#eee; border-radius:10px; height:8px; overflow:hidden; margin-bottom:20px; }
     .progress-bar {
-      height:100%;background:linear-gradient(90deg,#43cea2,#185a9d);
-      width:0;transition:width .5s ease;
+      height:100%; background:linear-gradient(90deg,#43cea2,#185a9d);
+      width:0; transition:width .5s ease;
     }
-    .question-section { display:none;animation:fadeIn .5s ease-in-out; }
+    .question-section { display:none; animation:fadeIn .5s ease-in-out; }
     .question-section.active { display:block; }
-    @keyframes fadeIn {
-      from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}
-    }
-    .question-header { display:flex;align-items:center;margin-bottom:15px; }
-    .question-icon {
-      font-size:1.8em;margin-right:10px;
-      animation:bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%,20%,50%,80%,100%{transform:translateY(0);}
-      40%{transform:translateY(-8px);}60%{transform:translateY(-4px);}
-    }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+    .question-header { display:flex; align-items:center; margin-bottom:15px; }
+    .question-icon { font-size:1.8em; margin-right:10px; animation:bounce 2s infinite; }
+    @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateY(0);} 40%{transform:translateY(-8px);} 60%{transform:translateY(-4px);} }
     .custom-input,.custom-select,textarea {
-      width:100%;padding:12px;margin-bottom:20px;
-      border:2px solid #ddd;border-radius:8px;
+      width:100%; padding:12px; margin-bottom:20px;
+      border:2px solid #ddd; border-radius:8px;
       transition:all .3s ease;
     }
     .custom-input:focus,.custom-select:focus,textarea:focus {
-      outline:none;border-color:#43cea2;
-      box-shadow:0 0 0 3px rgba(67,206,162,0.2);
-      transform:scale(1.02);
+      outline:none; border-color:#43cea2;
+      box-shadow:0 0 0 3px rgba(67,206,162,0.2); transform:scale(1.02);
     }
-    .radio-group { display:flex;flex-direction:column;gap:10px;margin-bottom:20px; }
+    .radio-group { display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
     .radio-option {
-      display:flex;align-items:center;padding:12px;
-      border:2px solid #ddd;border-radius:8px;cursor:pointer;
-      transition:all .3s ease;background:rgba(255,255,255,0.9);
+      display:flex; align-items:center; padding:12px;
+      border:2px solid #ddd; border-radius:8px; cursor:pointer;
+      transition:all .3s ease; background:rgba(255,255,255,0.9);
     }
     .radio-option:hover {
-      border-color:#43cea2;transform:translateY(-2px);
+      border-color:#43cea2; transform:translateY(-2px);
       box-shadow:0 5px 15px rgba(67,206,162,0.2);
     }
     .radio-option.selected {
-      border-color:#43cea2;background:linear-gradient(135deg,#43cea222,#185a922);
+      border-color:#43cea2; background:linear-gradient(135deg,#43cea222,#185a922);
     }
     .radio-option input { display:none; }
     .radio-custom {
-      width:20px;height:20px;border:2px solid #43cea2;border-radius:50%;
-      margin-right:12px;position:relative;transition:all .3s ease;
+      width:20px; height:20px; border:2px solid #43cea2; border-radius:50%;
+      margin-right:12px; position:relative; transition:all .3s ease;
     }
     .radio-option.selected .radio-custom { background:#43cea2; }
     .radio-option.selected .radio-custom::after {
-      content:'';position:absolute;top:50%;left:50%;
-      width:8px;height:8px;background:#fff;border-radius:50%;
-      transform:translate(-50%,-50%);
+      content:''; position:absolute; top:50%; left:50%; width:8px; height:8px;
+      background:#fff; border-radius:50%; transform:translate(-50%,-50%);
     }
-    .btn-group { display:flex;justify-content:space-between;margin-top:20px; }
+    .btn-group { display:flex; justify-content:space-between; margin-top:20px; }
     .btn {
-      padding:12px 24px;border:none;border-radius:20px;
-      font-size:1em;font-weight:600;cursor:pointer;
-      transition:all .3s ease;
+      padding:12px 24px; border:none; border-radius:20px;
+      font-size:1em; font-weight:600; cursor:pointer; transition:all .3s ease;
     }
     .btn-primary {
-      background:linear-gradient(45deg,#43cea2,#185a9d);color:#fff;
+      background:linear-gradient(45deg,#43cea2,#185a9d); color:#fff;
     }
     .btn-primary:hover {
       transform:translateY(-2px);
       box-shadow:0 8px 16px rgba(67,206,162,0.3);
     }
     .btn-secondary {
-      background:#f0f0f0;color:#555;
+      background:#f0f0f0; color:#555;
     }
     .btn-secondary:hover {
-      background:#e0e0e0;transform:translateY(-2px);
+      background:#e0e0e0; transform:translateY(-2px);
+    }
+    .feedback-message {
+      background:rgba(102,126,234,0.1); border-radius:15px;
+      padding:15px; margin-top:15px; text-align:center;
+      display:none;
+    }
+    .feedback-message.show {
+      display:block; animation:slideIn 0.3s ease-in-out;
+    }
+    @keyframes slideIn { from{transform:translateX(-100%);opacity:0;} to{transform:translateX(0);opacity:1;} }
+    .rest-break {
+      text-align:center; padding:30px;
+      background:linear-gradient(135deg,#ffeaa7,#fab1a0);
+      border-radius:20px; margin:20px 0; display:none;
+    }
+    .rest-break.active { display:block; animation:fadeIn .5s ease-in-out; }
+    .rest-gif {
+      width:200px; height:150px; background:#ff7675;
+      border-radius:15px; margin:20px auto; display:flex;
+      align-items:center; justify-content:center;
+      font-size:3em; animation:wiggle 1s ease-in-out infinite;
+    }
+    @keyframes wiggle { 0%,100%{transform:rotate(0);}25%{transform:rotate(-5deg);}75%{transform:rotate(5deg);} }
+    .sound-toggle {
+      position:fixed; top:20px; right:20px;
+      background:rgba(255,255,255,0.9); border:none; border-radius:50%;
+      width:50px; height:50px; font-size:1.2em; cursor:pointer;
+      box-shadow:0 5px 15px rgba(0,0,0,0.2); z-index:1000;
+    }
+    @media (max-width:768px) {
+      .survey-container { padding:20px; margin:10px; }
+      .survey-title { font-size:2em; }
+      .btn-group { flex-direction:column; gap:10px; }
+      .btn { width:100%; }
     }
     .congratulations {
-      text-align:center;padding:40px 20px;display:none;
+      display:none; text-align:center; padding:40px 20px;
     }
     .congratulations.active {
-      display:block;animation:zoomIn .5s ease;
+      display:block; animation:zoomIn .5s ease-in-out;
     }
-    @keyframes zoomIn {
-      from{opacity:0;transform:scale(0.8);}to{opacity:1;transform:scale(1);}
-    }
+    @keyframes zoomIn { from{transform:scale(0.8);opacity:0;} to{transform:scale(1);opacity:1;} }
   </style>
 </head>
 <body>
+
+  <!-- Sound toggle icon -->
+  <button class="sound-toggle" id="soundToggle">🔊</button>
+
+  <!-- Survey header -->
+  <div class="survey-header">
+    <h1 class="survey-title">Khảo Sát Nhu cầu ứng dụng AI Trong Call Center</h1>
+    <p class="survey-subtitle">
+      Chào bạn! Hãy giúp mình vài phút để tạo ra những trải nghiệm tuyệt vời hơn. Cảm ơn cực nhiều! 💖
+    </p>
+  </div>
+
+  <!-- Netlify form -->
   <form name="survey" method="POST" data-netlify="true">
     <input type="hidden" name="form-name" value="survey"/>
 
@@ -114,376 +148,399 @@
         <div class="progress-bar" id="progressBar"></div>
       </div>
 
-      <!-- Q1 -->
+      <!-- Q1: STT -->
       <div class="question-section" id="q1">
         <div class="question-header">
-          <div class="question-icon">⚙️</div>
-          <h3>1. Linh hoạt tuỳ biến (API-First)</h3>
+          <div class="question-icon">🎤</div>
+          <h3>1. Speech-to-Text (STT) chính xác, real-time</h3>
         </div>
-        <label for="q1_1">
-          1.1. Trên thang 1–5, bạn đánh giá độ quan trọng của việc “tự do cấu hình” các module AI (STT, Tóm tắt, Phân tích) qua API như thế nào?
-        </label>
-        <select id="q1_1" name="Độ quan trọng tự do cấu hình module AI (1-5)" class="custom-select" required>
-          <option value="">-- Chọn --</option>
-          <option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option>
+        <label>1.1. Bạn đã từng sử dụng STT trong công việc chưa? Nếu rồi, trải nghiệm của bạn thế nào?</label>
+        <textarea name="q1_1" class="custom-input" rows="2" required></textarea>
+
+        <label>1.2. Bạn mong đợi độ chính xác (%) của STT đạt bao nhiêu để không phải chỉnh sửa hậu kỳ?</label>
+        <input type="number" name="q1_2" class="custom-input" min="50" max="100" placeholder="% chính xác" required/>
+
+        <label>1.3. Tính năng nhận diện đa giọng (Bắc/Trung/Nam) với bạn quan trọng đến đâu?</label>
+        <select name="q1_3" class="custom-select" required>
+          <option value="">-- Chọn mức độ --</option>
+          <option>Rất quan trọng</option>
+          <option>Quan trọng</option>
+          <option>Bình thường</option>
+          <option>Không quan trọng</option>
         </select>
 
-        <label>
-          1.2. Bạn mong muốn có console (GUI) để kéo-thả kích hoạt từng module AI hay chỉ cần gọi API qua code?
-        </label>
+        <label>1.4. Bạn có cần STT hỗ trợ thêm tiếng nước ngoài (Anh, Hoa…) trong kịch bản gọi không?</label>
         <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="Console GUI hay API thuần code hay cả hai" value="Giao diện GUI" required/>
-            <div class="radio-custom"></div>Giao diện GUI
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Console GUI hay API thuần code hay cả hai" value="API thuần code"/>
-            <div class="radio-custom"></div>API thuần code
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Console GUI hay API thuần code hay cả hai" value="Cả hai"/>
-            <div class="radio-custom"></div>Cả hai
-          </label>
+          <label class="radio-option"><input type="radio" name="q1_4" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q1_4" value="Không"/><div class="radio-custom"></div>Không</label>
+        </div>
+
+        <label>1.5. Bạn sẵn sàng trả thêm phí cho STT real-time hay chỉ cần bản ghi chậm (sau gọi)?</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q1_5" value="Real-time" required/><div class="radio-custom"></div>Real-time</label>
+          <label class="radio-option"><input type="radio" name="q1_5" value="Sau gọi"/><div class="radio-custom"></div>Sau gọi</label>
         </div>
       </div>
 
-      <!-- Q2 -->
+      <!-- Q2: Sentiment Analysis -->
       <div class="question-section" id="q2">
         <div class="question-header">
-          <div class="question-icon">⏱️</div>
-          <h3>2. Tốc độ triển khai & Onboarding</h3>
+          <div class="question-icon">😊</div>
+          <h3>2. Phân tích cảm xúc & Sentiment Analysis</h3>
         </div>
-        <label>
-          2.1. Thời gian học và thích nghi với tính năng AI mới bạn mong là bao lâu?
-        </label>
+        <label>2.1. Bạn nghĩ việc “báo đỏ” khi khách hàng giận dữ có giúp bạn điều chỉnh kịp thời?</label>
         <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="Thời gian học thích nghi AI" value="<1 ngày" required/>
-            <div class="radio-custom"></div>&lt; 1 ngày
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Thời gian học thích nghi AI" value="1–3 ngày"/>
-            <div class="radio-custom"></div>1–3 ngày
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Thời gian học thích nghi AI" value="1 tuần"/>
-            <div class="radio-custom"></div>1 tuần
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Thời gian học thích nghi AI" value="Hơn 1 tuần"/>
-            <div class="radio-custom"></div>Hơn 1 tuần
-          </label>
+          <label class="radio-option"><input type="radio" name="q2_1" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q2_1" value="Không"/><div class="radio-custom"></div>Không</label>
         </div>
 
-        <label>
-          2.2. Bạn muốn hình thức đào tạo nào để nhanh “lên tay” với AI Layer?
-        </label>
+        <label>2.2. Chỉ báo tâm trạng (tích cực/tiêu cực) ngay trên màn hình có hữu ích không?</label>
         <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="Hình thức đào tạo AI Layer" value="Video ngắn gọn (5–10’)" required/>
-            <div class="radio-custom"></div>Video ngắn gọn (5–10’)
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Hình thức đào tạo AI Layer" value="Workshop tương tác"/>
-            <div class="radio-custom"></div>Workshop tương tác
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Hình thức đào tạo AI Layer" value="Wiki/manual chi tiết"/>
-            <div class="radio-custom"></div>Wiki/manual chi tiết
-          </label>
+          <label class="radio-option"><input type="radio" name="q2_2" value="Rất hữu ích" required/><div class="radio-custom"></div>Rất hữu ích</label>
+          <label class="radio-option"><input type="radio" name="q2_2" value="Hữu ích"/><div class="radio-custom"></div>Hữu ích</label>
+          <label class="radio-option"><input type="radio" name="q2_2" value="Bình thường"/><div class="radio-custom"></div>Bình thường</label>
+        </div>
+
+        <label>2.3. Bạn cần cảnh báo sớm khi sentiment giảm dưới ngưỡng nào (%)?</label>
+        <input type="number" name="q2_3" class="custom-input" min="0" max="100" placeholder="% ngưỡng" required/>
+
+        <label>2.4. Bạn muốn xem biểu đồ dòng thời gian cảm xúc sau cuộc gọi hay chỉ tín hiệu đơn giản?</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q2_4" value="Biểu đồ thời gian" required/><div class="radio-custom"></div>Biểu đồ thời gian</label>
+          <label class="radio-option"><input type="radio" name="q2_4" value="Tín hiệu đơn giản"/><div class="radio-custom"></div>Tín hiệu đơn giản</label>
+        </div>
+
+        <label>2.5. Bạn có lo ngại AI phân tích sai cảm xúc nếu giọng khách lẫn lộn (say, ốm…)?</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q2_5" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q2_5" value="Không"/><div class="radio-custom"></div>Không</label>
         </div>
       </div>
 
-      <!-- Q3 -->
+      <!-- Q3: Script Suggestions -->
       <div class="question-section" id="q3">
         <div class="question-header">
-          <div class="question-icon">🎤</div>
-          <h3>3. “Máy nghe – người viết” (Speech-to-Text)</h3>
+          <div class="question-icon">💡</div>
+          <h3>3. Gợi ý kịch bản real-time (Script Suggestions)</h3>
         </div>
-        <label for="q3_1">
-          3.1. Bạn đánh giá tính năng STT giúp tiết kiệm bao nhiêu % thời gian so với ghi chú tay? (1–100%)
-        </label>
-        <input id="q3_1" type="number" class="custom-input"
-               name="Phần trăm tiết kiệm thời gian STT (1-100)" min="1" max="100" required/>
+        <label>3.1. Trong bao nhiêu % cuộc gọi bạn cần “đến kịch bản” để không bị ngắt quãng?</label>
+        <input type="number" name="q3_1" class="custom-input" min="0" max="100" placeholder="% cuộc gọi" required/>
 
-        <label>3.2. Bạn có nhu cầu highlight từ khoá ngay khi đang gọi không?</label>
+        <label>3.2. Bạn muốn AI gợi ý toàn bộ câu thoại hay chỉ “gạch đầu dòng” ý chính?</label>
         <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="Highlight từ khoá khi gọi" value="Có" required/>
-            <div class="radio-custom"></div>Có
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Highlight từ khoá khi gọi" value="Không"/>
-            <div class="radio-custom"></div>Không
-          </label>
+          <label class="radio-option"><input type="radio" name="q3_2" value="Toàn bộ câu" required/><div class="radio-custom"></div>Toàn bộ câu</label>
+          <label class="radio-option"><input type="radio" name="q3_2" value="Gạch đầu dòng"/><div class="radio-custom"></div>Gạch đầu dòng</label>
         </div>
 
-        <label>Nếu có, bạn muốn:</label>
+        <label>3.3. Gợi ý sản phẩm/dịch vụ phù hợp theo ngữ cảnh có làm tăng tỉ lệ chốt đơn không?</label>
         <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="Cách highlight từ khoá" value="Tự động" required/>
-            <div class="radio-custom"></div>Tự động
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Cách highlight từ khoá" value="Thủ công"/>
-            <div class="radio-custom"></div>Thủ công
-          </label>
+          <label class="radio-option"><input type="radio" name="q3_3" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q3_3" value="Không"/><div class="radio-custom"></div>Không</label>
         </div>
+
+        <label>3.4. Bạn muốn tích hợp luôn FAQs/knowledge-base nội bộ vào phần gợi ý?</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q3_4" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q3_4" value="Không"/><div class="radio-custom"></div>Không</label>
+        </div>
+
+        <label>3.5. Bạn mong đợi thời gian phản hồi của AI sau khi bạn ngừng nói là bao lâu (giây)?</label>
+        <input type="number" name="q3_5" class="custom-input" min="0" placeholder="số giây" required/>
       </div>
 
-      <!-- Q4 -->
+      <!-- Q4: Tóm tắt & Highlight -->
       <div class="question-section" id="q4">
         <div class="question-header">
           <div class="question-icon">📝</div>
-          <h3>4. Tóm tắt & Phân tích sau cuộc gọi</h3>
+          <h3>4. Tóm tắt & Highlight tự động sau cuộc gọi</h3>
         </div>
-        <label>4.1. Bạn ưu tiên AI tạo tóm tắt:</label>
+        <label>4.1. Bao nhiêu bullet-point là đủ để bạn đánh giá nhanh nội dung?</label>
+        <select name="q4_1" class="custom-select" required>
+          <option value="">-- Chọn số bullet --</option>
+          <option>3</option><option>5</option><option>7</option>
+        </select>
+
+        <label>4.2. Bạn ưu tiên tóm tắt dưới dạng text thuần hay kết hợp biểu đồ nhỏ?</label>
         <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="Ưu tiên kiểu tóm tắt" value="3 bullet point chính" required/>
-            <div class="radio-custom"></div>3 bullet point chính
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Ưu tiên kiểu tóm tắt" value="1 đoạn văn ngắn"/>
-            <div class="radio-custom"></div>1 đoạn văn ngắn
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Ưu tiên kiểu tóm tắt" value="Cả hai"/>
-            <div class="radio-custom"></div>Cả hai
-          </label>
+          <label class="radio-option"><input type="radio" name="q4_2" value="Text thuần" required/><div class="radio-custom"></div>Text thuần</label>
+          <label class="radio-option"><input type="radio" name="q4_2" value="Kết hợp biểu đồ"/><div class="radio-custom"></div>Kết hợp biểu đồ</label>
         </div>
 
-        <label>4.2. Với tính năng gắn nhãn cảm xúc, bạn muốn:</label>
+        <label>4.3. Tự động bôi đậm action-item có giúp bạn tiết kiệm thời gian follow-up?</label>
         <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="Kiểu gắn nhãn cảm xúc" value="Chỉ báo màu sắc" required/>
-            <div class="radio-custom"></div>Chỉ báo màu sắc
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Kiểu gắn nhãn cảm xúc" value="Biểu đồ timeline"/>
-            <div class="radio-custom"></div>Biểu đồ timeline
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Kiểu gắn nhãn cảm xúc" value="Cả hai"/>
-            <div class="radio-custom"></div>Cả hai
-          </label>
+          <label class="radio-option"><input type="radio" name="q4_3" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q4_3" value="Không"/><div class="radio-custom"></div>Không</label>
+        </div>
+
+        <label>4.4. Bạn muốn download bản tóm tắt ra file PDF/Excel hay chỉ hiển thị trên dashboard?</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q4_4" value="PDF/Excel" required/><div class="radio-custom"></div>PDF/Excel</label>
+          <label class="radio-option"><input type="radio" name="q4_4" value="Dashboard"/><div class="radio-custom"></div>Dashboard</label>
+        </div>
+
+        <label>4.5. Bạn có cần vocal summary (AI đọc tóm tắt) để nghe lại nhanh không?</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q4_5" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q4_5" value="Không"/><div class="radio-custom"></div>Không</label>
         </div>
       </div>
 
-      <!-- Q5 -->
+      <!-- Q5: Keyword Spotting -->
       <div class="question-section" id="q5">
         <div class="question-header">
-          <div class="question-icon">🚀</div>
-          <h3>5. “Hành động ngay” (Post-Call Action)</h3>
+          <div class="question-icon">🔍</div>
+          <h3>5. Phân tích từ khóa (Keyword Spotting)</h3>
         </div>
-        <label>5.1. Sau mỗi cuộc gọi, bạn thường quên làm gì nhất? (Chọn tối đa 2)</label>
+        <label>5.1. Bạn muốn gắn tag tự động cho bao nhiêu từ khóa quan trọng?</label>
+        <input type="number" name="q5_1" class="custom-input" min="1" placeholder="VD: 10, 20..." required/>
+
+        <label>5.2. Bạn cần tìm lại cuộc gọi dựa trên từ khóa trong khoảng thời gian nào?</label>
+        <select name="q5_2" class="custom-select" required>
+          <option value="">-- Chọn --</option>
+          <option>1 tuần</option><option>1 tháng</option><option>3 tháng</option>
+        </select>
+
+        <label>5.3. Tính năng highlight từ khóa có giúp bạn trong khâu báo cáo không?</label>
         <div class="radio-group">
-          <label><input type="checkbox" name="Hành động thường quên" value="Gửi email follow-up"/> Gửi email follow-up</label>
-          <label><input type="checkbox" name="Hành động thường quên" value="Tạo ticket trên CRM"/> Tạo ticket trên CRM</label>
-          <label><input type="checkbox" name="Hành động thường quên" value="Lên lịch gọi lại"/> Lên lịch gọi lại</label>
-          <label>
-            <input type="checkbox" name="Hành động thường quên" value="Khác"/> Khác:
-            <input type="text" name="Hành động thường quên (khác)" class="custom-input" placeholder="Ghi rõ…"/>
-          </label>
+          <label class="radio-option"><input type="radio" name="q5_3" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q5_3" value="Không"/><div class="radio-custom"></div>Không</label>
         </div>
 
-        <label>5.2. Bạn muốn AI:</label>
+        <label>5.4. Bạn cần grouping từ khóa theo chủ đề như thế nào?</label>
+        <textarea name="q5_4" class="custom-input" rows="2" placeholder="VD: khiếu nại, upsell..." required></textarea>
+
+        <label>5.5. Bạn ưu tiên từ khóa dạng “exact match” hay “fuzzy match”?</label>
         <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="AI hỗ trợ hành động" value="Tự động bôi đậm cụm hành động" required/>
-            <div class="radio-custom"></div>Tự động bôi đậm cụm hành động
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="AI hỗ trợ hành động" value="Nhận cảnh báo popup"/>
-            <div class="radio-custom"></div>Nhận cảnh báo popup
-          </label>
+          <label class="radio-option"><input type="radio" name="q5_5" value="Exact match" required/><div class="radio-custom"></div>Exact match</label>
+          <label class="radio-option"><input type="radio" name="q5_5" value="Fuzzy match"/><div class="radio-custom"></div>Fuzzy match</label>
         </div>
       </div>
 
-      <!-- Q6 -->
+      <!-- Q6: Escalation -->
       <div class="question-section" id="q6">
         <div class="question-header">
-          <div class="question-icon">🤝</div>
-          <h3>6. Trợ lý Real-Time vs Coaching Post-Call</h3>
+          <div class="question-icon">⚠️</div>
+          <h3>6. Định tuyến & Escalation Detection</h3>
         </div>
-        <label>6.1. Nếu chỉ được chọn một, bạn sẽ ưu tiên:</label>
+        <label>6.1. Trong tình huống nào bạn cần AI tự động “chuyển máy”?</label>
+        <textarea name="q6_1" class="custom-input" rows="2" placeholder="VD: khi khách khiếu nại..." required></textarea>
+
+        <label>6.2. Bạn muốn nhận gợi ý người quản lý nào phụ trách escalating?</label>
+        <input type="text" name="q6_2" class="custom-input" placeholder="Nhập tên/nhóm" required/>
+
+        <label>6.3. Ngưỡng sentiment hoặc số lần khách lặp lại từ khóa tiêu cực để escalate là bao nhiêu?</label>
+        <input type="number" name="q6_3" class="custom-input" placeholder="VD: 3 lần hoặc 30%" required/>
+
+        <label>6.4. Bạn có cần ghi âm, attach ticket tự động khi escalated không?</label>
         <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="Ưu tiên Real-time hay Post-call" value="Real-time" required/>
-            <div class="radio-custom"></div>Trợ lý gợi ý kịch bản real-time
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Ưu tiên Real-time hay Post-call" value="Post-call"/>
-            <div class="radio-custom"></div>Báo cáo + coaching sau cuộc gọi
-          </label>
+          <label class="radio-option"><input type="radio" name="q6_4" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q6_4" value="Không"/><div class="radio-custom"></div>Không</label>
         </div>
 
-        <label for="q6_2">6.2. Lý do lựa chọn của bạn (ngắn gọn):</label>
-        <textarea id="q6_2" name="Lý do ưu tiên Real-time hay Post-call" rows="2" required></textarea>
+        <label>6.5. Bạn cần thông báo qua kênh nào khi xảy ra escalate?</label>
+        <textarea name="q6_5" class="custom-input" rows="2" placeholder="VD: Slack, Email, Popup..." required></textarea>
       </div>
 
-      <!-- Q7 -->
+      <!-- Q7: Predictive Dialer -->
       <div class="question-section" id="q7">
         <div class="question-header">
-          <div class="question-icon">📊</div>
-          <h3>7. Dashboard & Insight</h3>
+          <div class="question-icon">📞</div>
+          <h3>7. Auto-Dial & Predictive Dialer</h3>
         </div>
-        <label>7.1. Bạn muốn xem chỉ số gì đầu tiên khi mở dashboard? (Chọn tối đa 3)</label>
+        <label>7.1. Bạn cần gọi bao nhiêu cuộc mỗi ngày để đánh giá hiệu quả dialer?</label>
+        <input type="number" name="q7_1" class="custom-input" placeholder="Số cuộc gọi/ngày" required/>
+
+        <label>7.2. Tần suất gọi lại (retry) theo khung giờ nào bạn thấy hợp lý?</label>
+        <input type="text" name="q7_2" class="custom-input" placeholder="VD: 9–11h, 15–17h" required/>
+
+        <label>7.3. Bạn cần phân biệt nhanh người thật/robot để skip không?</label>
         <div class="radio-group">
-          <label><input type="checkbox" name="Chỉ số ưu tiên mở dashboard" value="Tổng cuộc gọi hôm nay"/> Tổng cuộc gọi hôm nay</label>
-          <label><input type="checkbox" name="Chỉ số ưu tiên mở dashboard" value="Tỉ lệ hài lòng (CSAT)"/> Tỉ lệ hài lòng (CSAT)</label>
-          <label><input type="checkbox" name="Chỉ số ưu tiên mở dashboard" value="Top 5 agents performance"/> Top 5 agents performance</label>
-          <label><input type="checkbox" name="Chỉ số ưu tiên mở dashboard" value="Thống kê cảm xúc theo khung giờ"/> Thống kê cảm xúc theo khung giờ</label>
-          <label>
-            <input type="checkbox" name="Chỉ số ưu tiên mở dashboard" value="Khác"/> Khác:
-            <input type="text" name="Chỉ số ưu tiên mở dashboard (khác)" class="custom-input" placeholder="Ghi rõ…"/>
-          </label>
+          <label class="radio-option"><input type="radio" name="q7_3" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q7_3" value="Không"/><div class="radio-custom"></div>Không</label>
         </div>
 
-        <label>7.2. Bạn thích dashboard:</label>
+        <label>7.4. Bạn muốn báo cáo real-time về tỷ lệ pick-up/answered?</label>
         <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="Kiểu dashboard" value="Biểu đồ đơn giản" required/>
-            <div class="radio-custom"></div>Biểu đồ đơn giản
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Kiểu dashboard" value="Heatmap / biểu đồ nâng cao"/>
-            <div class="radio-custom"></div>Heatmap / biểu đồ nâng cao
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Kiểu dashboard" value="Bảng xếp hạng, leaderboard"/>
-            <div class="radio-custom"></div>Bảng xếp hạng, leaderboard
-          </label>
+          <label class="radio-option"><input type="radio" name="q7_4" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q7_4" value="Không"/><div class="radio-custom"></div>Không</label>
         </div>
+
+        <label>7.5. Auto-dial có cần kết hợp giọng chào mẫu hay voice-overlay tùy chỉnh không?</label>
+        <textarea name="q7_5" class="custom-input" rows="2" required></textarea>
       </div>
 
-      <!-- Q8 -->
+      <!-- Q8: CRM Integration -->
       <div class="question-section" id="q8">
         <div class="question-header">
-          <div class="question-icon">🔌</div>
-          <h3>8. Tích hợp & Mở rộng</h3>
+          <div class="question-icon">🔗</div>
+          <h3>8. Tích hợp CRM / Knowledge Base</h3>
         </div>
-        <label for="q8_1">
-          8.1. Bạn đang dùng CRM / ticket system nào và mong muốn tích hợp mượt mà nhất?
-        </label>
-        <input id="q8_1" type="text" class="custom-input"
-               name="CRM/ticket system đang dùng" placeholder="Ví dụ: Salesforce, Zendesk…" required/>
+        <label>8.1. Bạn đang dùng CRM nào và cần hiển thị thông tin nào ngay khi cuộc gọi bắt đầu?</label>
+        <textarea name="q8_1" class="custom-input" rows="2" required></textarea>
 
-        <label>8.2. Bạn có nhu cầu export báo cáo ra file hay chỉ xem online?</label>
+        <label>8.2. Bạn cần truy vấn ticket cũ qua voice-command hay UI là đủ?</label>
         <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="Xuất báo cáo hay chỉ xem online" value="Export (Excel, PDF)" required/>
-            <div class="radio-custom"></div>Export (Excel, PDF)
-          </label>
-          <label class="radio-option">
-            <input type="radio" name="Xuất báo cáo hay chỉ xem online" value="Chỉ online"/>
-            <div class="radio-custom"></div>Chỉ online
-          </label>
+          <label class="radio-option"><input type="radio" name="q8_2" value="Voice" required/><div class="radio-custom"></div>Voice</label>
+          <label class="radio-option"><input type="radio" name="q8_2" value="UI"/><div class="radio-custom"></div>UI</label>
         </div>
+
+        <label>8.3. Bạn muốn note kết quả call lên CRM tự động theo template không?</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q8_3" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q8_3" value="Không"/><div class="radio-custom"></div>Không</label>
+        </div>
+
+        <label>8.4. Bạn có dùng thêm chat nội bộ (Slack, Teams) cần tích hợp?</label>
+        <textarea name="q8_4" class="custom-input" rows="1" placeholder="VD: Slack, Teams..." required></textarea>
+
+        <label>8.5. Bạn cần liệt kê nhanh 3 mục KPI từ CRM khi bắt đầu ca làm việc?</label>
+        <textarea name="q8_5" class="custom-input" rows="1" required></textarea>
       </div>
 
-      <!-- Q9 -->
+      <!-- Q9: Coaching -->
       <div class="question-section" id="q9">
         <div class="question-header">
-          <div class="question-icon">💡</div>
-          <h3>9. Kỳ vọng trải nghiệm “AI Buddy”</h3>
+          <div class="question-icon">🛠️</div>
+          <h3>9. Giám sát chất lượng & Coaching Sau Cuộc Gọi</h3>
         </div>
-        <label for="q9_1">
-          9.1. Miêu tả 1–2 từ khoá cảm xúc khi nghĩ về “AI đồng hành”:
-        </label>
-        <input id="q9_1" type="text" class="custom-input"
-               name="Từ khoá cảm xúc với AI đồng hành" placeholder="Ví dụ: Hứng khởi, Lo lắng…" required/>
+        <label>9.1. Bạn muốn AI tự động chấm điểm theo checklist nào?</label>
+        <textarea name="q9_1" class="custom-input" rows="2" placeholder="VD: lời chào, kịch bản..." required></textarea>
 
-        <label for="q9_2">
-          9.2. Bạn lo ngại nhất điều gì khi AI hỗ trợ công việc gọi điện?
-        </label>
-        <textarea id="q9_2" name="Lo ngại khi AI hỗ trợ gọi điện" rows="2" required></textarea>
+        <label>9.2. Bao lâu bạn cần nhận report coaching?</label>
+        <select name="q9_2" class="custom-select" required>
+          <option value="">-- Chọn --</option>
+          <option>Ngay sau call</option><option>Hàng ngày</option><option>Hàng tuần</option>
+        </select>
+
+        <label>9.3. Bạn ưu tiên feedback dạng bullet-point hay full-transcript?</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q9_3" value="Bullet" required/><div class="radio-custom"></div>Bullet-point</label>
+          <label class="radio-option"><input type="radio" name="q9_3" value="Transcript"/><div class="radio-custom"></div>Full-transcript</label>
+        </div>
+
+        <label>9.4. Bạn có cần so sánh performance với nhóm/bảng xếp hạng không?</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q9_4" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q9_4" value="Không"/><div class="radio-custom"></div>Không</label>
+        </div>
+
+        <label>9.5. Bạn muốn nhận gợi ý cải thiện cá nhân qua email hay popup?</label>
+        <textarea name="q9_5" class="custom-input" rows="1" placeholder="VD: Email, Popup..." required></textarea>
       </div>
 
-      <!-- Q10 -->
+      <!-- Q10: Dashboard -->
       <div class="question-section" id="q10">
         <div class="question-header">
-          <div class="question-icon">🌟</div>
-          <h3>10. Góp ý & Mơ ước</h3>
+          <div class="question-icon">📊</div>
+          <h3>10. Báo cáo & Dashboard Insight</h3>
         </div>
-        <label for="q10_1">
-          10.1. Bạn còn tính năng “mơ ước” nào chưa thấy liệt kê ở trên không? Hãy chia sẻ!
-        </label>
-        <textarea id="q10_1" name="Tính năng mơ ước chia sẻ" rows="3"></textarea>
+        <label>10.1. KPI nào là quan trọng nhất với bạn?</label>
+        <input type="text" name="q10_1" class="custom-input" placeholder="VD: CSAT, AHT..." required/>
 
-        <label for="q10_2">
-          10.2. Nếu Gcalls cho bạn quyền vote 3 tính năng ưu tiên cho bản v1, bạn sẽ chọn gì?
-        </label>
-        <textarea id="q10_2" name="Vote 3 tính năng ưu tiên" rows="2"></textarea>
+        <label>10.2. Bạn cần heatmap khung giờ nào?</label>
+        <input type="text" name="q10_2" class="custom-input" placeholder="VD: 8–12h, 12–16h..." required/>
+
+        <label>10.3. Bạn muốn xem biểu đồ time-series hay chỉ số tổng hợp?</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q10_3" value="Time-series" required/><div class="radio-custom"></div>Time-series</label>
+          <label class="radio-option"><input type="radio" name="q10_3" value="Tổng hợp"/><div class="radio-custom"></div>Tổng hợp</label>
+        </div>
+
+        <label>10.4. Bạn có cần export data sang BI tool?</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="q10_4" value="Có" required/><div class="radio-custom"></div>Có</label>
+          <label class="radio-option"><input type="radio" name="q10_4" value="Không"/><div class="radio-custom"></div>Không</label>
+        </div>
+
+        <label>10.5. Bạn muốn dashboard cập nhật real-time hay refresh mỗi 5/10 phút?</label>
+        <select name="q10_5" class="custom-select" required>
+          <option value="">-- Chọn --</option>
+          <option>Real-time</option><option>Mỗi 5 phút</option><option>Mỗi 10 phút</option>
+        </select>
       </div>
 
+      <!-- rest-break, navigation, feedback -->
+      <div class="rest-break" id="restBreak">
+        <div class="rest-gif">😴</div><p>Thư giãn tí nào…🥤</p>
+      </div>
       <div class="btn-group">
-        <button type="button" class="btn btn-secondary" id="prevBtn" onclick="prevQ()">⬅️ Quay lại</button>
-        <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextQ()">Tiếp theo ➡️</button>
+        <button type="button" class="btn btn-secondary" id="prevBtn">⬅️ Quay lại</button>
+        <button type="button" class="btn btn-primary"   id="nextBtn">Tiếp theo ➡️</button>
       </div>
-
-      <div class="congratulations" id="congrats">
-        <h2>🎉 Hoàn thành khảo sát!</h2>
-        <p>Cảm ơn bạn đã chia sẻ ý kiến – chúng mình sẽ bay cao nhờ feedback của bạn! 🚀</p>
-      </div>
+      <div class="feedback-message" id="feedbackMessage">Nice! Cảm ơn bạn đã trả lời 😊</div>
     </div>
   </form>
 
+  <!-- Thanks screen -->
+  <div class="congratulations" id="congrats">
+    <h2>🎉 Hoàn thành khảo sát!</h2>
+    <p>Cảm ơn bạn đã chia sẻ ý kiến – chúng mình sẽ bay cao nhờ feedback của bạn! 🚀</p>
+  </div>
+
   <script>
-  const form     = document.querySelector('form[name="survey"]');
-  const sections = document.querySelectorAll('.question-section');
-  const total    = sections.length;
-  let current    = 1;
+    const form     = document.querySelector('form[name="survey"]');
+    const secs     = document.querySelectorAll('.question-section');
+    const total    = secs.length;
+    let current    = 1;
+    const fb       = document.getElementById('feedbackMessage');
+    const rest     = document.getElementById('restBreak');
+    let soundOn    = true;
 
-  function showStep(n) {
-    sections.forEach((sec,i)=> sec.classList.toggle('active', i+1===n));
-    document.getElementById('progressBar').style.width = (n/total*100)+'%';
-    document.getElementById('prevBtn').style.display = n>1?'inline-block':'none';
-    document.getElementById('nextBtn').textContent = n===total?'Hoàn tất 🎉':'Tiếp theo ➡️';
-  }
-
-  function nextQ() {
-    if (current < total) {
-      current++;
-      showStep(current);
-    } else {
-      form.submit();
+    function showStep(n){
+      secs.forEach((s,i)=>s.classList.toggle('active', i+1===n));
+      document.getElementById('progressBar').style.width = (n/total*100)+'%';
+      document.getElementById('prevBtn').style.display = n>1?'inline-block':'none';
+      document.getElementById('nextBtn').textContent = n===total?'Hoàn tất 🎉':'Tiếp theo ➡️';
+      rest.classList.toggle('active', n===Math.ceil(total/2));
     }
-  }
 
-  function prevQ(){
-    if (current>1) {
-      current--;
-      showStep(current);
+    function showFeedback(){
+      fb.classList.add('show');
+      setTimeout(()=>fb.classList.remove('show'),5000); // lâu hơn
     }
-  }
 
-  function selectRadio(el) {
-    const name = el.querySelector('input').name;
-    // Bỏ .selected ở các label khác
-    document.getElementsByName(name)
-      .forEach(i=>i.closest('.radio-option').classList.remove('selected'));
-    // Thêm .selected vào label được click
-    el.classList.add('selected');
-    // Check input bên trong
-    el.querySelector('input').checked = true;
-  }
+    function nextQ(){
+      if(current<total){
+        current++;
+        showStep(current);
+        showFeedback();
+      } else {
+        document.querySelector('.survey-container').style.display='none';
+        document.querySelector('.btn-group').style.display='none';
+        fb.style.display='none';
+        document.getElementById('congrats').classList.add('active');
+        // form.submit();
+      }
+    }
 
-  window.addEventListener('DOMContentLoaded', () => {
-    // Hiện câu hỏi đầu tiên
-    showStep(1);
+    function prevQ(){
+      if(current>1){
+        current--;
+        showStep(current);
+        showFeedback();
+      }
+    }
 
-    // Gán sự kiện cho nút Next / Prev
-    document.getElementById('nextBtn').addEventListener('click', nextQ);
-    document.getElementById('prevBtn').addEventListener('click', prevQ);
+    function selectRadio(lbl){
+      const inp = lbl.querySelector('input');
+      document.getElementsByName(inp.name)
+        .forEach(i=>i.closest('label').classList.remove('selected'));
+      lbl.classList.add('selected');
+      inp.checked = true;
+      if(soundOn) new Audio('https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg').play();
+    }
 
-    // Gán sự kiện click cho tất cả các label.radio-option
-    document.querySelectorAll('.radio-option').forEach(label => {
-      label.addEventListener('click', () => selectRadio(label));
+    document.addEventListener('DOMContentLoaded',()=>{
+      showStep(1);
+      document.getElementById('nextBtn').addEventListener('click', nextQ);
+      document.getElementById('prevBtn').addEventListener('click', prevQ);
+      document.querySelectorAll('.radio-option')
+        .forEach(lbl=>lbl.addEventListener('click',()=>selectRadio(lbl)));
+      document.getElementById('soundToggle').addEventListener('click',()=>{
+        soundOn = !soundOn;
+        document.getElementById('soundToggle').textContent = soundOn?'🔊':'🔇';
+      });
     });
-  });
-</script>
-
+  </script>
 </body>
 </html>
