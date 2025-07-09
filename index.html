@@ -152,7 +152,9 @@
       <div class="question-section" id="q1">
         <div class="question-header">
           <div class="question-icon">🎤</div>
-          <h3>1. Speech-to-Text (STT) chính xác, real-time</h3>
+          <h3>1. Speech-to-Text (STT) chính xác, real-time.
+          </h3>
+          
         </div>
         <label>1.1. Bạn đã từng sử dụng STT trong công việc chưa? Nếu rồi, trải nghiệm của bạn thế nào?</label>
         <textarea
@@ -235,6 +237,7 @@
           <div class="question-icon">😊</div>
           <h3>2. Phân tích cảm xúc & Sentiment Analysis</h3>
         </div>
+        
         <label>2.1. Bạn nghĩ việc “báo đỏ” khi khách hàng giận dữ có giúp bạn điều chỉnh kịp thời?</label>
         <div class="radio-group">
           <label class="radio-option">
@@ -285,10 +288,10 @@
           </label>
         </div>
 
-        <label>2.3. Bạn cần cảnh báo sớm khi sentiment giảm dưới ngưỡng nào (%)?</label>
+        <label>2.3. Bạn cần cảnh báo sớm khi sentiment (cảm xúc) giảm dưới ngưỡng nào (%)?</label>
         <input
           type="number"
-          name="2.3. Bạn cần cảnh báo sớm khi sentiment giảm dưới ngưỡng nào (%)?"
+          name="2.3. Bạn cần cảnh báo sớm khi sentiment (cảm xúc) giảm dưới ngưỡng nào (%)?"
           class="custom-input"
           min="0"
           max="100"
@@ -336,7 +339,45 @@
             />
             <div class="radio-custom"></div> Không
           </label>
+
+
+          
+          
         </div>
+        
+        <label>2.6. Là một tổng đài viên, bạn đánh giá việc Phân tích Cảm xúc trong chăm sóc khách hàng như thế nào?</label>
+  <div class="radio-group">
+    <label class="radio-option">
+      <input type="radio"
+             name="2.6. Là một tổng đài viên, bạn đánh giá việc Phân tích Cảm xúc trong chăm sóc khách hàng như thế nào?"
+             value="Không hữu ích" required/>
+      <div class="radio-custom"></div> Không hữu ích
+    </label>
+    <label class="radio-option">
+      <input type="radio"
+             name="2.6. Là một tổng đài viên, bạn đánh giá việc Phân tích Cảm xúc trong chăm sóc khách hàng như thế nào?"
+             value="Ít hữu ích"/>
+      <div class="radio-custom"></div> Ít hữu ích
+    </label>
+    <label class="radio-option">
+      <input type="radio"
+             name="2.6. Là một tổng đài viên, bạn đánh giá việc Phân tích Cảm xúc trong chăm sóc khách hàng như thế nào?"
+             value="Bình thường"/>
+      <div class="radio-custom"></div> Bình thường
+    </label>
+    <label class="radio-option">
+      <input type="radio"
+             name="2.6. Là một tổng đài viên, bạn đánh giá việc Phân tích Cảm xúc trong chăm sóc khách hàng như thế nào?"
+             value="Hữu ích"/>
+      <div class="radio-custom"></div> Hữu ích
+    </label>
+    <label class="radio-option">
+      <input type="radio"
+             name="2.6. Là một tổng đài viên, bạn đánh giá việc Phân tích Cảm xúc trong chăm sóc khách hàng như thế nào?"
+             value="Rất hữu ích"/>
+      <div class="radio-custom"></div> Rất hữu ích
+    </label>
+  </div>
       </div>
 
       <!-- Q3 -->
@@ -443,7 +484,7 @@
           required
         >
           <option value="">-- Chọn số bullet --</option>
-          <option>3</option><option>5</option><option>7</option>
+          <option>3</option><option>5</option><option>7</option><option>> 7</option>
         </select>
 
         <label>4.2. Bạn ưu tiên tóm tắt dưới dạng text thuần hay kết hợp biểu đồ nhỏ?</label>
