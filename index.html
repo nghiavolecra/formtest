@@ -380,9 +380,11 @@
     </div>
 
      <div class="btn-group">
-        <button type="button" class="btn btn-secondary" id="prevBtn" onclick="prevQ()">⬅️ Quay lại</button>
+       <button type="button" class="btn btn-secondary" id="prevBtn" onclick="prevQ()">⬅️ Quay lại</button>
+
         <!-- Chuyển nút hoàn tất thành submit để Netlify bắt -->
-        <button type="button" class="btn btn-primary" id="nextBtn">Tiếp theo ➡️</button>
+     <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextQ()">Tiếp theo ➡️</button>
+
       </div>
 
       <!-- Màn thanks chỉ hiển thị sau submit -->
@@ -395,34 +397,34 @@
 
   <script>
     const form = document.querySelector('form[name="survey"]');
-const sections = document.querySelectorAll('.question-section');
-const total = sections.length;
-let current = 1;
+  const sections = document.querySelectorAll('.question-section');
+    const total = sections.length;
+    let current = 1;
 
-function showStep(n) {
-  sections.forEach((sec,i)=> sec.classList.toggle('active', i+1===n));
-  document.getElementById('progressBar').style.width = (n/total*100)+'%';
-  document.getElementById('prevBtn').style.display = n>1 ? 'inline-block' : 'none';
-  const next = document.getElementById('nextBtn');
-  next.textContent = n===total ? 'Hoàn tất 🎉' : 'Tiếp theo ➡️';
-}
+    function showStep(n) {
+      sections.forEach((sec,i)=> sec.classList.toggle('active', i+1===n));
+      document.getElementById('progressBar').style.width = (n/total*100)+'%';
+      document.getElementById('prevBtn').style.display = n>1 ? 'inline-block' : 'none';
+      const next = document.getElementById('nextBtn');
+      next.textContent = n===total ? 'Hoàn tất 🎉' : 'Tiếp theo ➡️';
+    }
 
-function nextQ() {
-  if (current < total) {
-    current++;
-    showStep(current);
-  } else {
-    // khi đã là bước cuối thì submit form
-    form.submit();
-  }
-}
+    function nextQ() {
+      if (current < total) {
+        current++;
+        showStep(current);
+      } else {
+        // khi đã là bước cuối thì submit form
+        form.submit();
+      }
+    }
 
-function prevQ() {
-  if (current > 1) {
-    current--;
-    showStep(current);
-  }
-}
+    function prevQ() {
+      if (current > 1) {
+        current--;
+        showStep(current);
+      }
+    }
 
 window.addEventListener('DOMContentLoaded', () => showStep(1));
 
@@ -443,6 +445,16 @@ window.addEventListener('DOMContentLoaded', () => showStep(1));
         document.getElementById('congrats').classList.add('active');
       }
     });
+
+    document.getElementById('nextBtn').addEventListener('click', nextQ);
+document.getElementById('prevBtn').addEventListener('click', prevQ);
+
+window.addEventListener('DOMContentLoaded', () => {
+  showStep(1);
+  document.getElementById('nextBtn').addEventListener('click', nextQ);
+  document.getElementById('prevBtn').addEventListener('click', prevQ);
+});
+
   </script>
 </body>
 </html>
