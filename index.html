@@ -144,10 +144,242 @@
         </div>
       </div>
 
-      <!-- ... các question-section Q2→Q10 giữ nguyên như trước ... -->
+    <!-- Q2 -->
+    <div class="question-section" id="q2">
+      <div class="question-header">
+        <div class="question-icon">⏱️</div>
+        <h3>2. Tốc độ triển khai & Onboarding</h3>
+      </div>
+      <label>2.1. Thời gian học và thích nghi với AI mới bạn mong là bao lâu?</label>
+      <div class="radio-group">
+        <div class="radio-option" onclick="selectRadio(this,'q2_1','under1')">
+          <input type="radio" name="q2_1" value="under1">
+          <div class="radio-custom"></div><span>&lt; 1 ngày</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q2_1','1-3')">
+          <input type="radio" name="q2_1" value="1-3">
+          <div class="radio-custom"></div><span>1–3 ngày</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q2_1','1week')">
+          <input type="radio" name="q2_1" value="1week">
+          <div class="radio-custom"></div><span>1 tuần</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q2_1','more')">
+          <input type="radio" name="q2_1" value="more">
+          <div class="radio-custom"></div><span>Hơn 1 tuần</span>
+        </div>
+      </div>
+      <label>2.2. Bạn muốn hình thức đào tạo nào?</label>
+      <div class="radio-group">
+        <div class="radio-option" onclick="selectRadio(this,'q2_2','video')">
+          <input type="radio" name="q2_2" value="video">
+          <div class="radio-custom"></div><span>Video ngắn gọn (5–10')</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q2_2','workshop')">
+          <input type="radio" name="q2_2" value="workshop">
+          <div class="radio-custom"></div><span>Workshop tương tác</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q2_2','manual')">
+          <input type="radio" name="q2_2" value="manual">
+          <div class="radio-custom"></div><span>Wiki/manual chi tiết</span>
+        </div>
+      </div>
+    </div>
 
-      <!-- Cuối cùng là nút submit thật -->
-      <div class="btn-group">
+    <!-- Q3 -->
+    <div class="question-section" id="q3">
+      <div class="question-header">
+        <div class="question-icon">🎤</div>
+        <h3>3. “Máy nghe – người viết” (Speech-to-Text)</h3>
+      </div>
+      <label>3.1. STT giúp tiết kiệm bao nhiêu % thời gian so với ghi chú tay?</label>
+      <input type="number" class="custom-input" name="q3_1" min="1" max="100" placeholder="Nhập % (1–100)" required/>
+      <label>3.2. Có nhu cầu highlight từ khoá khi đang gọi?</label>
+      <div class="radio-group">
+        <div class="radio-option" onclick="selectRadio(this,'q3_2','yes')">
+          <input type="radio" name="q3_2" value="yes">
+          <div class="radio-custom"></div><span>Có</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q3_2','no')">
+          <input type="radio" name="q3_2" value="no">
+          <div class="radio-custom"></div><span>Không</span>
+        </div>
+      </div>
+      <label>Nếu có, bạn muốn:</label>
+      <div class="radio-group">
+        <div class="radio-option" onclick="selectRadio(this,'q3_2_mode','auto')">
+          <input type="radio" name="q3_2_mode" value="auto">
+          <div class="radio-custom"></div><span>Tự động</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q3_2_mode','manual')">
+          <input type="radio" name="q3_2_mode" value="manual">
+          <div class="radio-custom"></div><span>Thủ công</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-section" id="q4">
+      <div class="question-header">
+        <div class="question-icon">📝</div>
+        <h3>4. Tóm tắt & Phân tích sau cuộc gọi</h3>
+      </div>
+      <label>4.1. Bạn ưu tiên AI tạo tóm tắt:</label>
+      <div class="radio-group">
+        <div class="radio-option" onclick="selectRadio(this,'q4_1','3pt')">
+          <input type="radio" name="q4_1" value="3pt">
+          <div class="radio-custom"></div><span>3 bullet point chính</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q4_1','paragraph')">
+          <input type="radio" name="q4_1" value="paragraph">
+          <div class="radio-custom"></div><span>1 đoạn văn ngắn</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q4_1','both')">
+          <input type="radio" name="q4_1" value="both">
+          <div class="radio-custom"></div><span>Cả hai</span>
+        </div>
+      </div>
+      <label>4.2. Với tính năng gắn nhãn cảm xúc, bạn muốn:</label>
+      <div class="radio-group">
+        <div class="radio-option" onclick="selectRadio(this,'q4_2','color')">
+          <input type="radio" name="q4_2" value="color">
+          <div class="radio-custom"></div><span>Chỉ báo màu sắc</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q4_2','timeline')">
+          <input type="radio" name="q4_2" value="timeline">
+          <div class="radio-custom"></div><span>Biểu đồ timeline</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q4_2','both')">
+          <input type="radio" name="q4_2" value="both">
+          <div class="radio-custom"></div><span>Cả hai</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-section" id="q5">
+      <div class="question-header">
+        <div class="question-icon">🚀</div>
+        <h3>5. “Hành động ngay” (Post-Call Action)</h3>
+      </div>
+      <label>5.1. Sau mỗi cuộc gọi, bạn thường quên làm gì nhất? (Chọn tối đa 2)</label>
+      <div class="input-group">
+        <label><input type="checkbox" name="q5_1[]" value="email"> Gửi email follow-up</label><br/>
+        <label><input type="checkbox" name="q5_1[]" value="ticket"> Tạo ticket CRM</label><br/>
+        <label><input type="checkbox" name="q5_1[]" value="schedule"> Lên lịch gọi lại</label><br/>
+        <label>Khác: <input type="text" name="q5_1_other" class="custom-input" placeholder="Ghi rõ…"></label>
+      </div>
+      <label>5.2. Bạn muốn AI:</label>
+      <div class="radio-group">
+        <div class="radio-option" onclick="selectRadio(this,'q5_2','highlight')">
+          <input type="radio" name="q5_2" value="highlight">
+          <div class="radio-custom"></div><span>Tự động bôi đậm cụm hành động</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q5_2','popup')">
+          <input type="radio" name="q5_2" value="popup">
+          <div class="radio-custom"></div><span>Nhận cảnh báo popup</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question-section" id="q6">
+      <div class="question-header">
+        <div class="question-icon">🤝</div>
+        <h3>6. Trợ lý Real-Time vs Coaching Post-Call</h3>
+      </div>
+      <label>6.1. Nếu chỉ chọn một, bạn ưu tiên:</label>
+      <div class="radio-group">
+        <div class="radio-option" onclick="selectRadio(this,'q6_1','realtime')">
+          <input type="radio" name="q6_1" value="realtime">
+          <div class="radio-custom"></div><span>Gợi ý kịch bản real-time</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q6_1','postcall')">
+          <input type="radio" name="q6_1" value="postcall">
+          <div class="radio-custom"></div><span>Báo cáo + coaching sau cuộc gọi</span>
+        </div>
+      </div>
+      <label>6.2. Lý do lựa chọn (ngắn gọn):</label>
+      <textarea name="q6_2" rows="2" required></textarea>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question-section" id="q7">
+      <div class="question-header">
+        <div class="question-icon">📊</div>
+        <h3>7. Dashboard & Insight</h3>
+      </div>
+      <label>7.1. Chọn tối đa 3 chỉ số khi mở dashboard:</label>
+      <div class="input-group">
+        <label><input type="checkbox" name="q7_1[]" value="callsToday"> Tổng cuộc gọi hôm nay</label><br/>
+        <label><input type="checkbox" name="q7_1[]" value="csat"> Tỉ lệ hài lòng (CSAT)</label><br/>
+        <label><input type="checkbox" name="q7_1[]" value="topAgents"> Top 5 agents performance</label><br/>
+        <label><input type="checkbox" name="q7_1[]" value="sentimentByTime"> Cảm xúc theo giờ</label><br/>
+        <label>Khác: <input type="text" name="q7_1_other" class="custom-input" placeholder="Ghi rõ…"></label>
+      </div>
+      <label>7.2. Bạn thích dashboard:</label>
+      <div class="radio-group">
+        <div class="radio-option" onclick="selectRadio(this,'q7_2','simple')">
+          <input type="radio" name="q7_2" value="simple">
+          <div class="radio-custom"></div><span>Biểu đồ đơn giản</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q7_2','heatmap')">
+          <input type="radio" name="q7_2" value="heatmap">
+          <div class="radio-custom"></div><span>Heatmap / nâng cao</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q7_2','leaderboard')">
+          <input type="radio" name="q7_2" value="leaderboard">
+          <div class="radio-custom"></div><span>Leaderboard</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="question-section" id="q8">
+      <div class="question-header">
+        <div class="question-icon">🔌</div>
+        <h3>8. Tích hợp & Mở rộng</h3>
+      </div>
+      <label>8.1. Bạn đang dùng CRM/Ticket nào?</label>
+      <input type="text" class="custom-input" name="q8_1" placeholder="Ví dụ: Salesforce, Zendesk…" required/>
+      <label>8.2. Bạn có cần export báo cáo?</label>
+      <div class="radio-group">
+        <div class="radio-option" onclick="selectRadio(this,'q8_2','export')">
+          <input type="radio" name="q8_2" value="export">
+          <div class="radio-custom"></div><span>Export (Excel, PDF)</span>
+        </div>
+        <div class="radio-option" onclick="selectRadio(this,'q8_2','online')">
+          <input type="radio" name="q8_2" value="online">
+          <div class="radio-custom"></div><span>Chỉ xem online</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="question-section" id="q9">
+      <div class="question-header">
+        <div class="question-icon">💡</div>
+        <h3>9. Kỳ vọng trải nghiệm “AI Buddy”</h3>
+      </div>
+      <label>9.1. Miêu tả 1–2 từ khoá cảm xúc:</label>
+      <input type="text" class="custom-input" name="q9_1" placeholder="Ví dụ: Hứng khởi, Lo lắng…" required/>
+      <label>9.2. Bạn lo ngại nhất điều gì khi AI hỗ trợ gọi điện?</label>
+      <textarea name="q9_2" rows="2" required></textarea>
+    </div>
+
+    <!-- Q10 -->
+    <div class="question-section" id="q10">
+      <div class="question-header">
+        <div class="question-icon">🌟</div>
+        <h3>10. Góp ý & Mơ ước</h3>
+      </div>
+      <label>10.1. Tính năng “mơ ước” bạn muốn:</label>
+      <textarea name="q10_1" rows="3"></textarea>
+      <label>10.2. Nếu được vote 3 tính năng ưu tiên, bạn chọn gì?</label>
+      <textarea name="q10_2" rows="2"></textarea>
+    </div>
+
+     <div class="btn-group">
         <button type="button" class="btn btn-secondary" id="prevBtn" onclick="prevQ()">⬅️ Quay lại</button>
         <!-- Chuyển nút hoàn tất thành submit để Netlify bắt -->
         <button type="submit" class="btn btn-primary" id="nextBtn">Tiếp theo ➡️</button>
